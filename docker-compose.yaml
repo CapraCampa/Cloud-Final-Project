@@ -1,0 +1,56 @@
+services:
+  master:
+    build: .
+    container_name: Master
+    hostname: Master
+    networks:
+      - my_network
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    ports:
+      - "2220:22"
+    volumes:
+      - shared_volume:/shared:mode=777
+  
+  node01:
+    build: .
+    container_name: Node01
+    hostname: Node01
+    networks:
+      - my_network
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    ports:
+      - "2221:22"
+    volumes:
+      - shared_volume:/shared:mode=777
+
+  node02:
+    build: .
+    container_name: Node02
+    hostname: Node02
+    networks:
+      - my_network
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    ports:
+      - "2222:22"
+    volumes:
+      - shared_volume:/shared:mode=777
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  shared_volume:
+    driver: local
