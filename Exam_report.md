@@ -43,7 +43,8 @@ The objective of this project is to evaluate and compare the overall performance
 >- CPU: AMD Ryzen 7 7730U
 >- RAM: 16 GB
 >- OS: Windows 11
->Some steps related to VirtualBox and Docker software may >differ depending on the operating system and architecture. 
+>
+>Some steps related to VirtualBox and Docker software may differ depending on the operating system and architecture. 
 
 # Virtual Machines Setup
 First, I decide my network topology. I want to create two worker nodes connected to a virtual switch and a master node that will work as the router, as the DNS and as the DHPC server. This topology enhances security, as only the master node will be directly connected to the internet, allowing us to configure it to filter messages from outside the internal net.
@@ -477,7 +478,6 @@ And I create the docker-compose.yaml:
 
 ```
 services:
-
   master:
     build: .
     container_name: Master
@@ -493,7 +493,6 @@ services:
       - "2220:22"
     volumes:
       - shared_volume:/shared:mode=777
-  
   node01:
     build: .
     container_name: Node01
@@ -509,7 +508,6 @@ services:
       - "2221:22"
     volumes:
       - shared_volume:/shared:mode=777
-
   node02:
     build: .
     container_name: Node02
@@ -525,11 +523,9 @@ services:
       - "2222:22"
     volumes:
       - shared_volume:/shared:mode=777
-
 networks:
   my_network:
     driver: bridge
-
 volumes:
   shared_volume:
     driver: local
@@ -766,6 +762,12 @@ In each of the following sections I will report the obtained results for each te
 | **SingleSTREAM (Scale)**   | 8.5237      GB/s               | 11.303 GB/s                |
 | **SingleSTREAM (Add)**     | 10.1071 GB/s                    | 13.0912 GB/s               |
 | **SingleSTREAM (Triad)**   | 10.173 GB/s                    | 13.21 GB/s                 |
+| **MPIFFT**|0.772 GFlops|2.600 GFlops|
+|**StarFFT** |1.7015 GFlops|2.6274 GFlops|
+|**SingleFFT**|2.2875 GFlops|3.7950|
+|**Ping Pong Latency**|233.452 µs|7.9276 µs|
+|**Ping Pong Bandwidth**|0.2075 GB/s|5.1689 GB/s|
+
 
 - **GFlops**: Giga Floating Point Operations Per Second, how many billion floating-point calculations a system can perform per second.
 - **GUP/s**: Giga Updates Per Second, how many billion memory updates (random accesses) can be performed per second.
@@ -821,7 +823,7 @@ Re-writer report:
 ![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-1.png)
 
 Reader report:
-![alt text](https://github.com/CapraCampa/Cloud-Final-Project/blob/main/image-2.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-2.png)
 
 Re-Reader report:
 ![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-3.png)
