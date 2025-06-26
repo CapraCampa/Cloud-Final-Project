@@ -22,7 +22,7 @@
 - [Useful remark for executing code on multiple machines](#useful-remark-for-executing-code-on-multiple-machines)
 - [Containers Setup](#containers-setup)
 - [Performance Test](#performance-test)
-  - [CPU test: HPC Challenge (HPCC)](#cpu-test-hpc-challenge-hpcc)
+  - [CPU test: HPC Challenges (HPCC)](#cpu-test-hpc-challenge-hpcc)
   - [Memory/CPU usage: stress-ng](#memorycpu-test-stress-ng)
   - [General system test: sysbench](#memorycpu-test-sysbench)
   - [Disk I/O test: IOZone](#disk-io-test-iozone)
@@ -533,7 +533,8 @@ volumes:
 
 Then I execute:
 ```bash
-docker-compose build -d
+docker-compose build
+docker-compose up -d
 docker exec -it Master bash
 ```
 This way I have created 3 containers connected by an internal network: Master, Node01 and Node02.
@@ -817,42 +818,42 @@ I also decided to keep only the most common operations, the other test results a
 ### Virtual Machines:
 
 Writer report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image.png)
 
 Re-writer report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-1.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-1.png)
 
 Reader report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-2.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-2.png)
 
 Re-Reader report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-3.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-3.png)
 
 Random read report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-4.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-4.png)
 
 Random write report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-5.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-5.png)
 
 ### Containers:
 
 Writer report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-6.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-6.png)
 
 Re-writer report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-7.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-7.png)
 
 Reader report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-8.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-8.png)
 
 Re-Reader report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-11.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-11.png)
 
 Random read report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-9.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-9.png)
 
 Random write report:
-![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/image-10.png)
+![alt text](https://raw.githubusercontent.com/CapraCampa/Cloud-Final-Project/main/images/image-10.png)
 
 We can notice that the overall shapes and patterns are largely the same for VMs and continers: high throughput on smaller (cache‐friendly) data sets, then a drop and leveling off for larger record sizes/files. Because this is a shared filesystem across two nodes, we are also dealing with potential network/metadata overheads: this could overshadow any performance differences between containers versus VMs on local disks and be the reason for the similar performances. 
 
